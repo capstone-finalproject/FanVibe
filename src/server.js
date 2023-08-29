@@ -1,17 +1,21 @@
-const express = require('express');
 const path = require('path');
-const handleCookieSessions = require('./middleware/handle-cookie-sessions');
+
+const express = require('express');
+
 const router = require('./router');
+const addModelsToRequest = require('./middleware/add-models-to-request');
+const handleCookieSessions = require('./middleware/handle-cookie-sessions');
+
 const logRoutes = require('./middleware/log-routes');
 
 const app = express();
 
-app.use(handleCookieSessions);  // adds a session property to each request representing the cookie
-app.use(logRoutes);       // print information about each incoming request
-app.use(express.json());  // parse incoming request bodies as JSON
+app.use(handleCookieSessions); // adds a session property to each request representing the cookie
+app.use(logRoutes); // print information about each incoming request
+app.use(express.json()); // parse incoming request bodies as JSON
 app.use(express.static(path.join(__dirname, '..', 'public'))); // Serve static assets from the public folder
 
-app.use('/api', router);
+app.use('/api', addModelsToRequest, router);
 
 // Requests meant for the API will be sent along to the router.
 // For all other requests, send back the index.html file in the public folder.

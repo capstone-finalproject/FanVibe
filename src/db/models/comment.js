@@ -1,82 +1,74 @@
-const knex = require("../knex");
+const knex = require('../db/knex');
 
 class Comment {
-  constructor({user_id,concert_id,text,parent_comment_id}) {
-    this.user_id = user_id;
-    this.concert_id = concert_id;
+  constructor({ id, text, parent_comment_id, replies, concert_id }) {
+    this.id = id;
     this.text = text;
-    this.parent_comment_id = parent_comment_id;
+    this.concertId = concert_id;
+    this.parentThreadId = parent_comment_id;
+    this.replies = replies;
   }
 
-  static async list(id, page) {
-    page = (Number(page) - 1) * 7;
-    const query = `SELECT c.id, c.request_id, c.user_id, c.content, c.is_public, c.created_at, c.is_public, u.username, u.pfp_url, u.is_fabricator
-    FROM comments AS c
-    INNER JOIN users AS u ON c.user_id = u.id
-    WHERE c.request_id = ? AND c.is_public = TRUE
-    ORDER BY 
-    c.created_at DESC
-    OFFSET ?
-    ROWS lIMIT 7;`;
-    const { rows } = await knex.raw(query, [id, page]);
-    return rows.map((comments) => new Comment(comments));
+  static async list({ concertId }) {
+    // Might actually split this out, to replies and comment tables
+    const comments = await knex
+      .select('*')
+      .from('comment')
+      .where('concert_id', concertId)
+      .andWhere('parent_comment_id', null);
+
+    // Map through the comments and attach the replies array from the subquery
+    const commentsWithReplies = await Promise.all(
+      comments.map(async (comment) => {
+        const replies = await knex
+          .select('*')
+          .from('comment')
+          .where('concert_id', concertId)
+          .andWhere('parent_comment_id', comment.id);
+
+        return { ...comment, replies };
+      }),
+    );
+
+    return commentsWithReplies.map((comment) => new Comment(comment));
   }
 
-  static async listPrivate(id, page) {
-    page = (Number(page) - 1) * 7;
-    const query = `SELECT c.id, c.request_id, c.user_id, c.content, c.is_public, c.created_at, c.is_public, u.username, u.pfp_url
-    FROM comments AS c
-    INNER JOIN users AS u ON c.user_id = u.id
-    WHERE c.request_id = ? AND c.is_public = FALSE
-    ORDER BY 
-    c.created_at DESC
-    OFFSET ?
-    ROWS lIMIT 7;`;
-    const { rows } = await knex.raw(query, [id, page]);
-    return rows.map((comments) => new Comment(comments));
+  static async find({ id, userId }) {
+    const [comment] = await knex
+      .select('*')
+      .from('comment')
+      .where({ id })
+      .andWhere({ user_id: userId })
+      .returning('*');
+
+    return comment ? new Comment(comment) : null;
   }
 
-  static async createComment(request_id, user_id, content, is_public) {
-    const query = `INSERT INTO comments (request_id, user_id, content, is_public)
-    VALUES (?, ?, ?, ? ) RETURNING *;`;
-    const {
-      rows: [comment],
-    } = await knex.raw(query, [request_id, user_id, content, is_public]);
+  static async create({ text, userId, concertId, threadId }) {
+    const [comment] = await knex('comment')
+      .insert({
+        text,
+        user_id: userId,
+        concert_id: concertId,
+        parent_comment_id: threadId,
+      })
+      .returning('*');
+
     return new Comment(comment);
   }
 
-  static async find(id) {
-    try {
-      const query = `SELECT * FROM comments WHERE id = ?`;
-      const {
-        rows: [comment],
-      } = await knex.raw(query, [id]);
-      return comment ? new Comment(comment) : null;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
+  static async delete({ id }) {
+    return knex('comment').del().where({ id });
   }
 
-  static async deleteComment(id) {
-    try {
-      const query = `DELETE FROM comments WHERE id = ?`;
-      const { rowCount: count } = await knex.raw(query, [id]);
-      return count;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  }
+  update = async ({ text, userId }) => {
+    const [updatedComment] = await knex('comment')
+      .where({ id: this.id, user_id: userId })
+      .update({ text })
+      .returning('*');
 
-  update = async (content) => {
-    const [updatedContent] = await knex("comments")
-      .where({ id: this.id })
-      .update({ content })
-      .returning("*");
-    return updatedContent ? new Comment(updatedContent) : null;
+    return updatedComment ? new Comment(updatedComment) : null;
   };
 }
 
 module.exports = Comment;
-
