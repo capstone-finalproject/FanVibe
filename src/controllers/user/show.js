@@ -4,10 +4,14 @@ const showUser = async (req, res) => {
     params: { id }, // this req.params.id is a part of the request URL
   } = req;
 
-  const user = await User.find(id);
-  if (!user) return res.sendStatus(404);
+  try {
+    const user = await User.find(id);
+    if (!user) return res.sendStatus(404);
 
-  res.send(user);
+    res.send(user);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 module.exports = showUser;

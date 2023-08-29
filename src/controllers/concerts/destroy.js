@@ -1,9 +1,16 @@
-const destroy = async (req, res) => {
+const deleteConcert = async (req, res) => {
   const {
     db: { Concert },
     params: { id },
-  } = req
-  const result = await Concert.destroy(id);
-  res.sendStatus(result ? 204 : 404);
+  } = req;
+
+  try {
+    const result = await Concert.deleteConcert({ id });
+
+    res.sendStatus(result ? 204 : 404);
+  } catch (err) {
+    console.error(err);
+  }
 };
-module.exports = destroy;
+
+module.exports = deleteConcert;

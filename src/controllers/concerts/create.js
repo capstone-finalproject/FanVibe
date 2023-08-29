@@ -1,15 +1,25 @@
 const createConcert = async (req, res) => {
-    const {
-      session, // this req.session property is put here by the handleCookieSessions middleware
-      db: { Concert }, // this req.db.User property is put here by the addModelsToRequest middleware
-      body: { name,date,venue,location }, // this req.body property is put here by the client
-    } = req;
-  
-    // TODO: check if username is taken, what should you return?
-    const concert = await Concert.create(name,date,venue,location);
-    session.userId = user.id;
-  
+  const {
+    db: { Concert },
+    body: {
+      name,
+      date,
+      artistId,
+      location,
+      thumbnail,
+    },
+  } = req;
+
+  // Who should be able to create concerts? Maybe have tiers for users?
+
+  // TODO: check if username is taken, what should you return?
+  try {
+    const concert = await Concert.create({ name, date, location, artistId, thumbnail });
+
     res.send(concert);
-  };
-  
-  module.exports = createConcert;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+module.exports = createConcert;

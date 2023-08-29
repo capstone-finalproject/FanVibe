@@ -1,10 +1,15 @@
 const listConcerts = async (req, res) => {
-  const { 
-    db: { Concert } // this req.db.User property is put here by the addModelsToRequest middleware
-  } = req; 
+  const {
+    db: { Concert },
+  } = req;
 
-  const concerts = await Concert.list();
-  res.send(concerts);
+  try {
+    const concerts = await Concert.list();
+
+    res.send(concerts);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 module.exports = listConcerts;
