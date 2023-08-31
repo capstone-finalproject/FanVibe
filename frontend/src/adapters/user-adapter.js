@@ -1,9 +1,10 @@
 import { fetchHandler, getPostOptions, getPatchOptions } from "../utils";
 
-const baseUrl = '/api/users';
+const baseUrl = '/api/user';
+const baseAuthUrl = '/api/auth';
 
 export const createUser = async ({ username, password }) => (
-  fetchHandler(baseUrl, getPostOptions({ username, password }))
+  fetchHandler(`${baseUrl}/create`, getPostOptions({ username, password }))
 );
 
 // eating errors here for simplicity

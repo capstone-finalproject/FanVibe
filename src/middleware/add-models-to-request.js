@@ -1,7 +1,7 @@
-const User = require('../db/models/user');
-const Ticket = require('../db/models/ticket');
-const Concert = require('../db/models/concert');
-const Comment = require('../db/models/comment');
+const User = require('../models/user');
+const Ticket = require('../models/ticket');
+const Concert = require('../models/concert');
+const Comment = require('../models/comment');
 
 const addModelsToRequest = (req, res, next) => {
   req.db = {
