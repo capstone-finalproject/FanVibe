@@ -13,8 +13,8 @@ exports.seed = async (knex) => {
   await User.create({
     username: "cool_cat",
     password: "1234",
-    first_name: "jackie",
-    last_name: "lopez",
+    firstName: "jackie",
+    lastName: "lopez",
     email: "jackielopez@emaill.com",
   });
   // await User.create('l33t-guy', '1234');

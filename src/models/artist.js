@@ -40,6 +40,10 @@ class Artist {
     return new Artist(artist);
   }
 
+  static async deleteAll() {
+    return knex('artist').del();
+  }
+
   static async delete({ id }) {
     return knex('artist').del().where({ id });
   }

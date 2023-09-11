@@ -1,28 +1,39 @@
 const knex = require('../db/knex');
 
 class Concert {
-  constructor({ id, name, location, date }) {
+  constructor({ id, name, location, date, artistName, genre, thumbnail }) {
     this.id = id;
     this.name = name;
     this.date = date;
+
+    // This may change to country/state
+    // And will instead have a venue location value
+    // May further split this out to concert and events
     this.location = location;
+    this.artist = {
+      name: artistName,
+      genre,
+    };
+    this.genre = genre;
+    this.thumbnail = thumbnail;
   }
 
-  static async list() {
-    // Should left join for user data
-    const concerts = await knex
-      .select('*')
-      .from('concert');
+  static async list({ genre }) {
+    const query = knex('concert')
+      .select('artist.name as artistName', 'artist.genre as genre', 'concert.*')
+      .join('artist', 'artist.id', 'concert.artist_id');
+
+    if (genre) query.where('genre', 'ilike', genre);
+
+    const concerts = await query;
 
     return concerts.map((concert) => new Concert(concert));
   }
 
   static async find({ id }) {
-    const [concert] = await knex
-      .select('*')
-      .from('concert')
-      .where({ id })
-      .returning('*');
+    const [concert] = await knex('concert')
+      .join('artist', 'artist.id', 'concert.artist_id')
+      .where({ id });
 
     return concert ? new Concert(concert) : null;
   }
@@ -43,6 +54,10 @@ class Concert {
 
   static async delete({ id }) {
     return knex('concert').del().where({ id });
+  }
+
+  static async deleteAll() {
+    return knex('concert').del();
   }
 
   update = async ({ location, date, thumbnail }) => {

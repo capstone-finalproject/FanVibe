@@ -16,10 +16,10 @@ exports.up = (knex) => Promise.all([
   knex.schema.createTable('concert', (table) => {
     table.increments().primary();
     table.string('name').notNullable();
-    table.string('artist_id', 256).notNullable();
+    table.integer('artist_id').notNullable();
     table.string('location', 256);
     table.date('date');
-    table.string('thumbnail', 500);
+    table.string('thumbnail',1000);
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   }),
@@ -37,7 +37,7 @@ exports.up = (knex) => Promise.all([
     table.string('name', 500).notNullable();
     table.string('genre', 256);
     table.string('bio', 256);
-    table.string('thumbnail', 256);
+    table.string('thumbnail', 1000);
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   }),

@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body, html {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
+  background-color: #141414;
+  color: #FFF;
 }
 
 input, label {
@@ -20,39 +22,27 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  background: #000;
 }
 
 #logo {
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  color: #FFF;
-}
-
-nav ul {
-  display: flex;
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-nav a {
-  display: block;
-  color: #FFF;
-}
-
-form {
-  padding: 1rem;
-  border: 1px solid #CCC;
-  width: 15rem;
-  margin: 1rem auto;
 }
 
 /* automatically added by NavLink component */
 .active {
-  color: #EEBC32;
   font-weight: bold;
-  font-style: italic;
+}
+
+nav {
+  color: #fff;
+  background-image: linear-gradient(180deg,rgba(0,0,0,.7) 10%, transparent);
+  z-index: 1000;
+}
+
+.site-name {
+  background: linear-gradient(to right, #E3498B, #9D6BA9,  #8874B4, #6685C3, #16ACE5);
+-webkit-text-fill-color: transparent;
+-webkit-background-clip: text;
 }

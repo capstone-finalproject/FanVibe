@@ -1,0 +1,8 @@
+.nav {
+  transition: background-color .4s;
+}
+
+.scroll {
+  position: fixed;
+  background-color: black;
+}
