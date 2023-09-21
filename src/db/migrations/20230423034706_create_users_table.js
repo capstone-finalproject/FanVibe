@@ -80,7 +80,6 @@ exports.up = (knex) => Promise.all([
 ]);
 
 /*
-  This will be the artist component, may come back to this!
   This will be the notifications table
   knex.createTable('notification', (table) => {
     table.increments('id').primary();

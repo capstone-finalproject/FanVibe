@@ -46,3 +46,40 @@ nav {
 -webkit-text-fill-color: transparent;
 -webkit-background-clip: text;
 }
+
+
+.likeIcon {
+  background: linear-gradient(to right, #E3498B, #9D6BA9,  #8874B4, #6685C3, #16ACE5);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+        
+li.line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 8px;
+  display: block;
+  border-top: 2px solid #f9dd94;
+}
+    
+
+ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-right: 0;
+}
+
+li {
+  list-style: none;
+  position: relative;
+  padding: 0 0 0 20px;
+}
+
+.date {
+  background: linear-gradient(to right, #E3498B, #9D6BA9,  #8874B4, #6685C3, #16ACE5);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}

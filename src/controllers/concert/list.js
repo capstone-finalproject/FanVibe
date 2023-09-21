@@ -1,11 +1,11 @@
 const listConcerts = async (req, res) => {
   const {
     db: { Concert },
-    query: { genre },
+    query: { genre, excludedConcertId },
   } = req;
 
   try {
-    const concerts = await Concert.list({ genre });
+    const concerts = await Concert.list({ genre, excludedConcertId });
 
     res.send(concerts);
   } catch (err) {

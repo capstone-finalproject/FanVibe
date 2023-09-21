@@ -3,9 +3,7 @@ const createConcert = async (req, res) => {
     db: { Concert },
     body: {
       name,
-      date,
       artistId,
-      location,
       thumbnail,
     },
   } = req;
@@ -14,7 +12,7 @@ const createConcert = async (req, res) => {
 
   // TODO: check if username is taken, what should you return?
   try {
-    const concert = await Concert.create({ name, date, location, artistId, thumbnail });
+    const concert = await Concert.create({ name, artistId, thumbnail });
 
     res.send(concert);
   } catch (err) {

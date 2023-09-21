@@ -1,4 +1,4 @@
-const Venue = require('../../models/concert');
+const Venue = require('../../models/venue');
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -16,7 +16,7 @@ exports.seed = async (knex) => {
         address: "1 Tennis Pl",
         city: "Forest Hills",
         state: "NY",
-        postalCode: parseInt("11375"),
+        postalCode: "11375",
         country: "United States",
         website: "https://www.foresthillsstadium.com/",
     });
@@ -27,7 +27,7 @@ exports.seed = async (knex) => {
         address: "4 Pennsylvania Plaza",
         city: "New York",
         state: "NY",
-        postalCode: parseInt("10001"),
+        postalCode: "10001",
         country: "United States",
         website: "https://www.msg.com/venue-tours/madison-square-garden/",
     });
@@ -38,7 +38,7 @@ exports.seed = async (knex) => {
         address: "1 Metlife Stadium Dr",
         city: "East Rutherford",
         state: "NJ",
-        postalCode: parseInt("07073"),
+        postalCode: "07073",
         country: "United States",
         website: "https://www.metlifestadium.com/",
     });
@@ -49,7 +49,7 @@ exports.seed = async (knex) => {
         address: "1 E 161 St",
         city: "Bronx",
         state: "NY",
-        postalCode: parseInt("10451"),
+        postalCode: "10451",
         country: "United States",
         website: "https://www.mlb.com/yankees/ballpark",
     });
@@ -60,7 +60,7 @@ exports.seed = async (knex) => {
         address: "620 Atlantic Ave",
         city:"Brooklyn",
         state: "NY",
-        postalCode: parseInt("11217"),
+        postalCode: "11217",
         country: "United States",
         website: "https://www.barclayscenter.com/",
     });
@@ -71,7 +71,7 @@ exports.seed = async (knex) => {
         address: "311 W 34th St.",
         city: "New York",
         state: "NY",
-        postalCode: parseInt("10001"),
+        postalCode: "10001",
         country: "United States",
         website: "https://mc34.com/",
     });
@@ -82,7 +82,7 @@ exports.seed = async (knex) => {
         address: "25 Lafayette St",
         city: "Newark",
         state: "NJ",
-        postalCode: parseInt("07102"),
+        postalCode: "07102",
         country: "United States",
         website: "https://www.prucenter.com/",
     });
@@ -93,7 +93,7 @@ exports.seed = async (knex) => {
         address: "1515 Broadway",
         city: "New York",
         state: "NY",
-        postalCode: parseInt("10036"),
+        postalCode: "10036",
         country: "United States",
         website: "https://www.palladiumtimessquare.com/",
     });
@@ -104,7 +104,7 @@ exports.seed = async (knex) => {
         address: "41 Seaver Wy",
         city: "Queens",
         state: "NY",
-        postalCode: parseInt("11368"),
+        postalCode: "11368",
         country: "United States",
         website: "https://www.mlb.com/mets/ballpark",
     });
@@ -115,7 +115,7 @@ exports.seed = async (knex) => {
         address: "140 Stewart Ave",
         city: "Brooklyn",
         state: "NY",
-        postalCode: parseInt("11237"),
+        postalCode: "11237",
         country: "United States",
         website: "https://www.avant-gardner.com/",
     });
@@ -126,7 +126,7 @@ exports.seed = async (knex) => {
         address: "303-319 CO-8",
         city: "Morrison",
         state: "CO",
-        postalCode: parseInt("80465"),
+        postalCode: "80465",
         country: "United States",
         website: "https://www.redrocksonline.com/",
     });
@@ -137,7 +137,7 @@ exports.seed = async (knex) => {
         address: "1111 S Figueroa St",
         city: "Los Angeles",
         state: "CA",
-        postalCode: parseInt("90015"),
+        postalCode: "90015",
         country: "United States",
         website: "https://business-directory.socialbilitty.com/places/united-states/california/los-angeles/attractions/staples-center/",
     });
@@ -148,7 +148,7 @@ exports.seed = async (knex) => {
         address: "1000 Vin Scully Ave",
         city: "Los Angeles",
         state: "CA",
-        postalCode: parseInt("90012"),
+        postalCode: "90012",
         country: "United States",
         website: "https://www.mlb.com/dodgers/ballpark",
     });
@@ -159,7 +159,7 @@ exports.seed = async (knex) => {
         address: "1-3-61 Koraku, Bunkyo City",
         city: "Tokyo",
         state: "Tokyo",  
-        postalCode: parseInt("112-0004"),
+        postalCode: "112-0004",
         country: "Japan",
         website: "https://www.tokyo-dome.co.jp/en/",
     });
@@ -170,7 +170,7 @@ exports.seed = async (knex) => {
         address: "500 Ave Arterial B St",
         city: "San Juan",
         state: "PR",
-        postalCode: parseInt("00918"),
+        postalCode: "00918",
         country: "Puerto Rico",
         website: "https://www.coliseodepuertorico.com/",
     });
@@ -181,7 +181,7 @@ exports.seed = async (knex) => {
         address: "430 Gyeongin-ro",
         city: "Seoul",
         state: "Seoul",
-        postalCode: parseInt("08389"),
+        postalCode: "08389",
         country: "South Korea",
         website: "https://www.skysportspark.co.kr/",
     });
@@ -192,7 +192,7 @@ exports.seed = async (knex) => {
         address: "8 Shintoshin, Chuo Ward",
         city: "Saitama",
         state: "Saitama",
-        postalCode: parseInt("330-9111"),
+        postalCode: "330-9111",
         country: "Japan",
         website: "https://www.saitama-arena.co.jp/",
     });
@@ -203,7 +203,7 @@ exports.seed = async (knex) => {
         address: "Juana Saltitopa 74",
         city: "Santiago de los Caballeros",
         state: "Santiago de los Caballeros",
-        postalCode: parseInt("51000"),
+        postalCode: "51000",
         country: "Dominican Republic",
         website: "https://www.aguilas.com.do/",
     });
@@ -214,7 +214,7 @@ exports.seed = async (knex) => {
         address: "Wembley, London HA9 0WS",
         city: "London",
         state: "London",
-        postalCode: parseInt("HA9 0WS"),
+        postalCode: "HA9 0WS",
         country: "United Kingdom",
         website: "https://www.wembleystadium.com/",
     });
@@ -225,7 +225,7 @@ exports.seed = async (knex) => {
         address: "2850 Boom",
         city: "Provinciaal Recreatiedomein De Schorre",
         state: "Belgium",
-        postalCode: parseInt("2850"),
+        postalCode: "2850",
         country: "Belgium",
         website: "https://www.tomorrowland.com/",
     });
@@ -236,7 +236,7 @@ exports.seed = async (knex) => {
         address: "7000 Las Vegas Blvd N",
         city: "Las Vegas",
         state: "NV",
-        postalCode: parseInt("89115"),
+        postalCode: "89115",
         country: "United States",
         website: "https://lasvegas.electricdaisycarnival.com/",
     });
@@ -247,7 +247,7 @@ exports.seed = async (knex) => {
         address: "Avenida de las Granjas 800",
         city: "Mexico City",
         state: "CDMX",
-        postalCode: parseInt("02230"),
+        postalCode: "02230",
         country: "Mexico",
         website: "https://www.arenaciudaddemexico.com/",
     });
@@ -258,7 +258,7 @@ exports.seed = async (knex) => {
         address: "81-800 Avenue 51",
         city: "Indio",
         state: "CA",
-        postalCode: parseInt("92201"),
+        postalCode: "92201",
         country: "United States",
         website: "https://www.coachella.com/",
     });
@@ -269,7 +269,7 @@ exports.seed = async (knex) => {
         address: "Peninsula Square, London SE10 0DX",
         city: "London",
         state: "London",
-        postalCode: parseInt("SE10 0DX"),
+        postalCode: "SE10 0DX",
         country: "United Kingdom",
         website: "https://www.theo2.co.uk/",
     });
@@ -280,7 +280,7 @@ exports.seed = async (knex) => {
         address: "3900 W Manchester Blvd",
         city: "Inglewood",
         state: "CA",
-        postalCode: parseInt("90305"),
+        postalCode: "90305",
         country: "United States",
         website: "https://www.msg.com/the-forum/",
     });
@@ -291,7 +291,7 @@ exports.seed = async (knex) => {
         address: "1001 Rose Bowl Dr",
         city: "Pasadena",
         state: "CA",
-        postalCode: parseInt("91103"),
+        postalCode: "91103",
         country: "United States",
         website: "https://www.rosebowlstadium.com/",
     });
@@ -302,7 +302,7 @@ exports.seed = async (knex) => {
         address: "301 Biscayne Blvd",
         city: "Miami",
         state: "FL",
-        postalCode: parseInt("33132"),
+        postalCode: "33132",
         country: "United States",
         website: "https://ultramusicfestival.com/",
     });

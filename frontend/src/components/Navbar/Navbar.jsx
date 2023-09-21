@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useContext } from "react";
 
 import useWindowScrollDetection from "../../hooks/useWindowScrollDetection";
@@ -10,9 +10,13 @@ import './styles.css';
 export default function SiteHeadingAndNav() {
   const { currentUser } = useContext(CurrentUserContext);
   const [isScrolling] = useWindowScrollDetection();
+  const location = useLocation();
+
+  const isUserOnHome = location.pathname === '';
+  const homePosition = isUserOnHome ? 'absolute' : null;
 
   return (
-    <nav className={`nav ${isScrolling ? 'scroll' : 'absolute'} w-full p-6`}>
+    <nav className={`nav ${isScrolling ? 'scroll' : homePosition} w-full p-6`}>
       <ul className="flex items-center justify-between">
         <li className="flex flex-row items-center justify-between">
           <a id="logo" href="/" className="mx-auto flex flex-row">

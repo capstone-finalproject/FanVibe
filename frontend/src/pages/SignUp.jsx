@@ -9,7 +9,10 @@ export default function SignUpPage() {
   const [errorText, setErrorText] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  
 
   if (currentUser) return <Navigate to="/" />;
 
@@ -18,7 +21,7 @@ export default function SignUpPage() {
     setErrorText('');
     if (!username || !password) return setErrorText('Missing username or password');
 
-    const [user, error] = await createUser({ username, password });
+    const [user, error] = await createUser({ username, password, firstName, lastName, email});
     if (error) return setErrorText(error.statusText);
 
     setCurrentUser(user);
@@ -29,7 +32,9 @@ export default function SignUpPage() {
     const { name, value } = event.target;
     if (name === 'username') setUsername(value);
     if (name === 'password') setPassword(value);
-    if (name === "role") setRole(value);
+    if (name === 'firstName') setFirstName(value);
+    if (name === 'lastName') setLastName(value);
+    if (name === 'email') setEmail(value);
   };
 
   return (

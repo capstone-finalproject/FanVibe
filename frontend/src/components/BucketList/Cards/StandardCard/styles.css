@@ -1,29 +1,20 @@
 .cardContainer {
   display: flex;
   flex-direction: column;
-  background-color: gray;
+  /* background-color: gray; */
 
-  width: 300px;
-  height: 150px;
+  flex: 0 0 50%;
+
+  cursor: pointer;
 }
 
-.imgContainer {
+.imageContainer {
   height: 0;
-  padding-bottom: 52.25%;
+  padding-bottom: 56.25%;
 }
 
-.contentContainer {
+
+.iconContainer {
   position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.img {
-  left: 50%;
-  right: auto;
-  top: 50%;
-  bottom: auto;
-  transform: translateX(-50%) translateY(-50%);
-  height: 100%;
-  width: calc(100% + 2px);
+  top: calc(50% - 12px);
 }

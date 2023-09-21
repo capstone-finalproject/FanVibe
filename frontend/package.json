@@ -12,6 +12,7 @@
     "tailwind-dev": "npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch"
   },
   "dependencies": {
+    "embla-carousel-react": "^8.0.0-rc12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-horizontal-scrolling-menu": "^4.1.0",

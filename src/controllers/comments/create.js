@@ -4,7 +4,7 @@ const createComment = async (req, res) => {
     db: { Comment }, // this req.db.User property is put here by the addModelsToRequest middleware
     body: {
       text,
-      concertId,
+      eventId,
       threadId,
     },
   } = req;
@@ -15,7 +15,7 @@ const createComment = async (req, res) => {
     const comment = await Comment.create({
       text,
       userId,
-      concertId,
+      eventId,
       threadId,
     });
 

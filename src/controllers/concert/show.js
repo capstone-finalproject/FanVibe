@@ -5,7 +5,7 @@ const getConcert = async (req, res) => {
   } = req;
 
   try {
-    const concert = await Concert.find(id);
+    const concert = await Concert.find({ id });
 
     if (!concert) return res.sendStatus(404);
 

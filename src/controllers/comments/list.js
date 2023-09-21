@@ -1,11 +1,11 @@
 const listComments = async (req, res) => {
   const {
     db: { Comment }, // this req.db.User property is put here by the addModelsToRequest middleware
-    query: { concertId }, // Should it be a query instead?
+    query: { eventId }, // Should it be a query instead?
   } = req;
 
   try {
-    const comments = await Comment.list({ concertId });
+    const comments = await Comment.list({ eventId });
 
     res.send(comments);
   } catch (err) {

@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import Bucket from "./Bucket";
 
 import { fetchHandler } from "../../utils";
 
 const BucketList = () => {
-  // This way of fetching may ultimately change
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -29,6 +30,7 @@ const BucketList = () => {
         { data: jrock[0], title: "J-Rock Music" },
         { data: reggaeton[0], title: "Reggaeton Music" },
       ]);
+      
     } catch (err) {
       console.error(err);
     }
@@ -38,12 +40,18 @@ const BucketList = () => {
     fetchData();
   }, []);
 
+  const handleConcertClick = useCallback((id) => {
+    navigate(`/concert/${id}`);
+  }, [navigate]);
+
   return (
     <section className="overflow-hidden relative w-full h-full mx-auto pb-6">
-      <div className="">
-        {data.length && data.map((content) => <Bucket key={content.title} item={content} />)}
-      </div>
-
+      {data.length
+      && data.map((content) => (
+          <div key={content.title} className="p-12 pt-0">
+            <Bucket item={content} onClick={handleConcertClick} />
+          </div>
+      ))}
     </section>
   );
 };

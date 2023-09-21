@@ -3,7 +3,7 @@ import { fetchHandler, getPostOptions, deleteOptions } from "../utils";
 const baseUrl = '/api/auth';
 
 export const checkForLoggedInUser = async () => {
-  const [data] = await fetchHandler(`${baseUrl}/me`);
+  const [data] = await fetchHandler(`/api/user/me`);
   return data;
 };
 
